@@ -46,6 +46,9 @@ export const QuoteAddButton = () => {
   const handleCancel = () => {
     console.log("cancel");
   };
+  const handleAddItem = () => {
+    console.log("cancel");
+  };
 
   // const getItems = async (data) => {
   //   const categories = _.filter(data, (e) => {
