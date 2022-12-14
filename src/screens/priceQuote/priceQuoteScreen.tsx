@@ -11,8 +11,8 @@ import { data } from "../../providers/internal/data";
 import { db } from "../../providers/internal/internal";
 
 export const priceQuoteScreen = ({}) => {
-  const fetchData = new db(data);
-  console.log(fetchData.categories);
+  // const fetchData = new db(data);
+  // console.log(fetchData.categories);
 
   // State
 

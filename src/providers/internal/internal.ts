@@ -1,4 +1,7 @@
 import _ from "lodash";
+import { createContext } from "native-base";
+import { Component } from "react";
+import { data } from "./data";
 
 export const priceQuote = {
   name: "",
@@ -12,8 +15,6 @@ export const priceQuote = {
   ],
 };
 
-import { Component } from "react";
-
 export class db extends Component {
   data: any;
 
@@ -24,7 +25,7 @@ export class db extends Component {
 
   get categories() {
     return _.map(this.data, (e, i, a) => {
-      return e.category.name;
+      return e.name;
     });
   }
   render() {

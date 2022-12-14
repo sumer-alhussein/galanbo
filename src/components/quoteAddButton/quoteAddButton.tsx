@@ -18,6 +18,7 @@ import _ from "lodash";
 
 // Hooks
 import { Dimensions } from "react-native";
+import { data } from "../../providers/internal/data";
 
 export const QuoteAddButton = () => {
   // State
@@ -26,6 +27,42 @@ export const QuoteAddButton = () => {
   const [category, setCategory] = React.useState("");
   const [itemType, setItemType] = React.useState("");
   const [product, setProduct] = React.useState("");
+  const [items, setItems] = React.useState([]);
+  const [products, setProducts] = React.useState([]);
+
+  // const [items, setItems] = React.useState([]);
+  const [state] = useState(data);
+
+  const handleSelectCategory = (category) => {
+    const _items = state.find((e) => e.id === category)?.items;
+    setItems(_items);
+    setProduct("");
+  };
+  const handleSelectType = (typ) => {
+    const _product = _.filter(items, (e) => typ === e.type);
+    setProducts(_product);
+    setProduct("");
+  };
+  const handleCancel = () => {
+    console.log("cancel");
+  };
+
+  // const getItems = async (data) => {
+  //   const categories = _.filter(data, (e) => {
+  //     return e.id === category;
+  //   });
+
+  //   try {
+  //     const products = await categories[0].items;
+  //     setItems(await products);
+  //   } catch (err) {
+  //     console.log("no data");
+  //   } finally {
+  //     setItems(products);
+  //   }
+  // };
+
+  // console.log(getItems());
 
   // UI Method
 
@@ -67,7 +104,13 @@ export const QuoteAddButton = () => {
           );
         }}
       </Pressable>
-      <Actionsheet isOpen={isOpen} onClose={onClose}>
+      <Actionsheet
+        isOpen={isOpen}
+        onClose={onClose}
+        _backdrop={false}
+        useRNModal={true}
+        disableOverlay
+      >
         <Actionsheet.Content>
           <Actionsheet.Item>
             <FormControl>
@@ -81,9 +124,14 @@ export const QuoteAddButton = () => {
                   endIcon: <CheckIcon size="5" />,
                   borderRadius: 16,
                 }}
-                onValueChange={(itemValue) => setCategory(itemValue)}
+                onValueChange={(itemValue) => {
+                  setCategory(itemValue);
+                  handleSelectCategory(itemValue);
+                }}
               >
-                <Select.Item label="UX Research" value="ux" />
+                {_.map(state, (e, i, a) => {
+                  return <Select.Item label={e.name} value={e.id} key={i} />;
+                })}
               </Select>
             </FormControl>
           </Actionsheet.Item>
@@ -99,9 +147,16 @@ export const QuoteAddButton = () => {
                   endIcon: <CheckIcon size="5" />,
                   borderRadius: 16,
                 }}
-                onValueChange={(itemValue) => setItemType(itemValue)}
+                onValueChange={(itemValue) => {
+                  setItemType(itemValue);
+                  handleSelectType(itemValue);
+                }}
               >
-                <Select.Item label="UX Research" value="ux" />
+                {_.map(items, (e, i) => {
+                  return (
+                    <Select.Item label={e.type} value={e.type} key={e.id} />
+                  );
+                })}
               </Select>
             </FormControl>
           </Actionsheet.Item>
@@ -119,7 +174,11 @@ export const QuoteAddButton = () => {
                 }}
                 onValueChange={(itemValue) => setProduct(itemValue)}
               >
-                <Select.Item label="UX Research" value="ux" />
+                {_.map(products, (ele) => {
+                  return (
+                    <Select.Item label={ele.item} value={ele.id} key={ele.id} />
+                  );
+                })}
               </Select>
             </FormControl>
           </Actionsheet.Item>
@@ -151,9 +210,7 @@ export const QuoteAddButton = () => {
                 fontSize: "lg",
                 fontWeight: "bold",
               }}
-              onPress={() => {
-                console.log("Cancel");
-              }}
+              onPress={handleCancel}
             >
               Cancel
             </Button>
