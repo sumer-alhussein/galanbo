@@ -19,6 +19,7 @@ import _ from "lodash";
 // Hooks
 import { Dimensions } from "react-native";
 import { data } from "../../providers/internal/data";
+const localData = require("./local.json");
 
 export const QuoteAddButton = () => {
   // State
@@ -27,49 +28,47 @@ export const QuoteAddButton = () => {
   const [category, setCategory] = React.useState("");
   const [itemType, setItemType] = React.useState("");
   const [product, setProduct] = React.useState("");
-  const [items, setItems] = React.useState([]);
   const [products, setProducts] = React.useState([]);
 
   // const [items, setItems] = React.useState([]);
-  const [state] = useState(data);
+  const [state] = useState(localData);
+  const [categories] = useState(state.products.fireplace);
+  const [types, setTypes] = useState([]);
 
-  const handleSelectCategory = (category) => {
-    const _items = state.find((e) => e.id === category)?.items;
-    setItems(_items);
+  const handleSelectCategory = (itemValue, categories) => {
+    const _products = _.find(categories, (ele) => {
+      return ele.category === itemValue;
+    }).products;
+
+    setCategory(itemValue);
+    const _filters = _.uniqBy(_products, (e) => e.type);
+    const _filterKeys = _.map(_filters, (e) => e.type);
+    setTypes(_filterKeys);
+    setProducts(_products);
+
     setProduct("");
   };
-  const handleSelectType = (typ) => {
-    const _product = _.filter(items, (e) => typ === e.type);
-    setProducts(_product);
+  const handleSelectType = (itemValue, products) => {
+    const _filteredProduct = _.filter(products, (ele) => {
+      return ele.type === itemValue;
+    });
+    setProducts(_filteredProduct);
+    setProduct(itemValue);
     setProduct("");
+  };
+
+  const handleSelectProduct = (itemValue, products) => {
+    console.log(itemValue);
+
+    setProduct(itemValue);
   };
   const handleCancel = () => {
-    console.log("cancel");
+    onClose();
   };
   const handleAddItem = () => {
-    console.log("cancel");
+    console.log("Add");
   };
-
-  // const getItems = async (data) => {
-  //   const categories = _.filter(data, (e) => {
-  //     return e.id === category;
-  //   });
-
-  //   try {
-  //     const products = await categories[0].items;
-  //     setItems(await products);
-  //   } catch (err) {
-  //     console.log("no data");
-  //   } finally {
-  //     setItems(products);
-  //   }
-  // };
-
-  // console.log(getItems());
-
   // UI Method
-
-  const width = Dimensions.get("window").width;
 
   return (
     <>
@@ -128,12 +127,17 @@ export const QuoteAddButton = () => {
                   borderRadius: 16,
                 }}
                 onValueChange={(itemValue) => {
-                  setCategory(itemValue);
-                  handleSelectCategory(itemValue);
+                  handleSelectCategory(itemValue, categories);
                 }}
               >
-                {_.map(state, (e, i, a) => {
-                  return <Select.Item label={e.name} value={e.id} key={i} />;
+                {_.map(categories, (ele) => {
+                  return (
+                    <Select.Item
+                      label={ele.title}
+                      value={ele.category}
+                      key={ele.category}
+                    />
+                  );
                 })}
               </Select>
             </FormControl>
@@ -152,13 +156,11 @@ export const QuoteAddButton = () => {
                 }}
                 onValueChange={(itemValue) => {
                   setItemType(itemValue);
-                  handleSelectType(itemValue);
+                  handleSelectType(itemValue, products);
                 }}
               >
-                {_.map(items, (e, i) => {
-                  return (
-                    <Select.Item label={e.type} value={e.type} key={e.id} />
-                  );
+                {_.map(types, (e, i) => {
+                  return <Select.Item label={e} value={e} key={i} />;
                 })}
               </Select>
             </FormControl>
@@ -175,11 +177,17 @@ export const QuoteAddButton = () => {
                   endIcon: <CheckIcon size="5" />,
                   borderRadius: 16,
                 }}
-                onValueChange={(itemValue) => setProduct(itemValue)}
+                onValueChange={(itemValue) =>
+                  handleSelectProduct(itemValue, products)
+                }
               >
                 {_.map(products, (ele) => {
                   return (
-                    <Select.Item label={ele.item} value={ele.id} key={ele.id} />
+                    <Select.Item
+                      label={ele.title}
+                      value={ele.id}
+                      key={ele.id}
+                    />
                   );
                 })}
               </Select>

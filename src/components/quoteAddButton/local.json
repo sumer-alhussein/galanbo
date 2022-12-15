@@ -1,0 +1,150 @@
+{
+  "products": {
+    "fireplace": [
+      {
+        "category": "gasFireplace",
+        "title": "ROMAN Fireplace",
+        "products": [
+          {
+            "id": 78899,
+            "title": "Linear Fireplace Burner 64cm",
+            "type": "Manual Remote Control",
+            "price": 325
+          },
+          {
+            "id": 56767,
+            "title": "Linear Fireplace Burner 84cm",
+            "type": "Manual Remote Control",
+            "price": 400
+          },
+          {
+            "id": 19900,
+            "title": "Linear Fireplace Burner 104cm",
+            "type": "Manual Remote Control",
+            "price": 475
+          },
+          {
+            "id": 88866,
+            "title": "Linear Fireplace Burner 124cm",
+            "type": "Manual Remote Control",
+            "price": 525
+          },
+          {
+            "id": 12129,
+            "title": "Linear Fireplace Burner 134cm",
+            "type": "Manual Remote Control",
+            "price": 550
+          },
+          {
+            "id": 78987,
+            "title": "Linear Fireplace Burner 154cm",
+            "type": "Manual Remote Control",
+            "price": 650
+          },
+          {
+            "id": 35676,
+            "title": "Linear Fireplace Burner 64cm",
+            "type": "With Remote Control",
+            "price": 400
+          },
+          {
+            "id": 98974,
+            "title": "Linear Fireplace Burner 84cm",
+            "type": "With Remote Control",
+            "price": 450
+          },
+          {
+            "id": 65765,
+            "title": "Linear Fireplace Burner 104cm",
+            "type": "With Remote Control",
+            "price": 550
+          },
+          {
+            "id": 24346,
+            "title": "Linear Fireplace Burner 124cm",
+            "type": "With Remote Control",
+            "price": 600
+          },
+          {
+            "id": 76898,
+            "title": "Linear Fireplace Burner 134cm",
+            "type": "With Remote Control",
+            "price": 650
+          },
+          {
+            "id": 53456,
+            "title": "Linear Fireplace Burner 154cm",
+            "type": "With Remote Control",
+            "price": 700
+          },
+          {
+            "id": 65734,
+            "title": "Linear Fireplace Burner 64cm",
+            "type": "Full Remote Control",
+            "price": 325
+          },
+          {
+            "id": 67335,
+            "title": "Linear Fireplace Burner 84cm",
+            "type": "Full Remote Control",
+            "price": 650
+          },
+          {
+            "id": 22345,
+            "title": "Linear Fireplace Burner 104cm",
+            "type": "Full Remote Control",
+            "price": 700
+          },
+          {
+            "id": 89776,
+            "title": "Linear Fireplace Burner 124cm",
+            "type": "Full Remote Control",
+            "price": 750
+          },
+          {
+            "id": 97898,
+            "title": "Linear Fireplace Burner 134cm",
+            "type": "Full Remote Control",
+            "price": 800
+          },
+          {
+            "id": 43578,
+            "title": "Linear Fireplace Burner 154cm",
+            "type": "Full Remote Control",
+            "price": 850
+          }
+        ]
+      },
+      {
+        "category": "electricFireplace",
+        "title": "Electric Fireplace",
+        "products": [
+          {
+            "id": 89797,
+            "title": "Vatra Electric Fireplace 40inch",
+            "type": "40inch",
+            "price": 450
+          },
+          {
+            "id": 35345,
+            "title": "Vatra Electric Fireplace 50inch",
+            "type": "50inch",
+            "price": 500
+          },
+          {
+            "id": 23435,
+            "title": "Vatra Electric Fireplace 60inch",
+            "type": "60inch",
+            "price": 600
+          },
+          {
+            "id": 67657,
+            "title": "Vatra Electric Fireplace 70inch",
+            "type": "70inch",
+            "price": 700
+          }
+        ]
+      }
+    ]
+  }
+}
