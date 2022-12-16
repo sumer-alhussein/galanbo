@@ -18,7 +18,6 @@ import _ from "lodash";
 
 // Hooks
 import { Dimensions } from "react-native";
-import { data } from "../../providers/internal/data";
 const localData = require("./local.json");
 
 export const QuoteAddButton = () => {
@@ -30,7 +29,6 @@ export const QuoteAddButton = () => {
   const [product, setProduct] = React.useState("");
   const [products, setProducts] = React.useState([]);
 
-  // const [items, setItems] = React.useState([]);
   const [state] = useState(localData);
   const [categories] = useState(state.products.fireplace);
   const [types, setTypes] = useState([]);

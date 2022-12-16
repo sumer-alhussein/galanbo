@@ -1,14 +1,37 @@
 import _ from "lodash";
 import React, { Component, ReactNode, createContext } from "react";
-import { data } from "../../providers/internal/data";
+// import { data } from "../../providers/internal/data";
+const localData = require("../../components/quoteAddButton/local.json");
 
-export interface Params {
+export interface PiceQuoteContainerParams {
   children: ReactNode;
   data: [];
 }
+export interface PriceQuoteParams {
+  clientName: string;
+  content: {
+    category: string;
+    product: "string";
+    type: string;
+    price: number;
+    count: number;
+  }[];
+}
 
-export class priceQuoteContainer extends Component {
-  constructor(params) {
+export interface Data {
+  products: {
+    category: string;
+    title: string;
+    products: { id: number; title: string; type: string; price: number }[];
+  }[];
+}
+const priceQuoteInetialState: PriceQuoteParams = {
+  clientName: "",
+  content: [],
+};
+
+export class priceQuoteContainer extends Component<PiceQuoteContainerParams> {
+  constructor(params: PiceQuoteContainerParams, data: Data) {
     super(params);
     this.state = {
       categeryList: [1, 2, 3],
@@ -17,8 +40,8 @@ export class priceQuoteContainer extends Component {
   }
 
   get categories() {
-    return _.map(data, (e, i, a) => {
-      return e.category.name;
+    return _.map(localData.fireplace, (e, i, a) => {
+      return e.category;
     });
   }
 
