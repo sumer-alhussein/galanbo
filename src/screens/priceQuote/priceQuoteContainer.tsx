@@ -3,6 +3,10 @@ import React, { Component, ReactNode, createContext } from "react";
 // import { data } from "../../providers/internal/data";
 const localData = require("../../components/quoteAddButton/local.json");
 
+const fetchData = setTimeout(() => {
+  return { age: 100, count: 3 };
+}, 1000);
+
 export interface PiceQuoteContainerParams {
   children: ReactNode;
   data: [];
